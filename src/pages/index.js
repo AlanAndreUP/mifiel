@@ -24,7 +24,7 @@ const CreatePDFButton = () => {
           name: "documento.pdf",
           hash,
           signatories: [
-            { email: "ejemplo@mifiel.com", name: "Ejemplo Mifiel" }
+            { email: "alanenmexico12@gmail.com", name: "Alan Andre Sanchez Hidalgo" }
           ]
         },
         {
