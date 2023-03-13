@@ -24,12 +24,12 @@ export default function DocumentCallback() {
       const signedDocumentFile = 'ruta/al/archivo/firmado.pdf'; // Cambia esto por la ruta donde guardes el archivo firmado
       const xmlFile = 'ruta/al/archivo/xml.xml'; // Cambia esto por la ruta donde guardes el archivo XML
 
-      require('fs').writeFileSync(signedDocumentFile, responseSigned.data);
-      require('fs').writeFileSync(xmlFile, responseXml.data);
+      //require('fs').writeFileSync(signedDocumentFile, responseSigned.data);
+    //  require('fs').writeFileSync(xmlFile, responseXml.data);
 
       // Une el PDF y el XML usando pdftk
-      const { spawnSync } = require('child_process');
-      spawnSync('pdftk', [signedDocumentFile, 'attach_files', xmlFile, 'output', signedDocumentFile]);
+    //  const { spawnSync } = require('child_process');
+     // spawnSync('pdftk', [signedDocumentFile, 'attach_files', xmlFile, 'output', signedDocumentFile]);
 
       console.log('Documento firmado descargado y unido al XML');
     }
