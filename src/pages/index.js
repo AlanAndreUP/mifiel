@@ -16,7 +16,7 @@ export default function Home()  {
     const { width, height } = page.getSize();
 
     const fontSize = 50;
-    page.drawText('Hello, World!', {
+    page.drawText('Hello, World!a', {
       x: width / 2 - fontSize,
       y: height / 2,
       size: fontSize,
