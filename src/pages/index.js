@@ -46,6 +46,8 @@ export default function Home()  {
           },
         ])
       );
+        formData.append('callback_url', 'https://alanandreup.github.io/mifiel/callback');
+      formData.append('sign_callback_url', 'https://alanandreup.github.io/mifiel/singcallback');
   
       const response = await axios.post(url, formData, {
         headers: {
@@ -56,8 +58,7 @@ export default function Home()  {
           password: '7LwWew2qx9kAvfQyODuKrCDjaKQ1b+AsG0iLwdey2E7gmUJ9txhIttOfdp40w481FJ7AOU3CCtLeydCMDi2YMg=='
         },
       });
-      formData.append('callback_url', 'https://alanandreup.github.io/mifiel/callback');
-      formData.append('sign_callback_url', 'https://alanandreup.github.io/mifiel/singcallback');
+    
      // const widgetId = await getWidgetId(response.data.id);
   
       setIsLoading(false);
