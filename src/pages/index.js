@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { PDFDocument } from 'pdf-lib';
 import React, { useState } from 'react';
-import CryptoJS from 'crypto-js';
+import styles from '@/styles/Home.module.css'
 import Script from 'next/script'
+
 let idD= "";
 let pdfBytes;
 export default function Home()  {
@@ -46,8 +47,6 @@ export default function Home()  {
           },
         ])
       );
-        formData.append('callback_url', 'https://alanandreup.github.io/mifiel/callback');
-      formData.append('sign_callback_url', 'https://alanandreup.github.io/mifiel/singcallback');
   
       const response = await axios.post(url, formData, {
         headers: {
@@ -58,7 +57,8 @@ export default function Home()  {
           password: '7LwWew2qx9kAvfQyODuKrCDjaKQ1b+AsG0iLwdey2E7gmUJ9txhIttOfdp40w481FJ7AOU3CCtLeydCMDi2YMg=='
         },
       });
-    
+      formData.append('callback_url', 'https://alanandreup.github.io/mifiel/callback');
+      formData.append('sign_callback_url', 'https://alanandreup.github.io/mifiel/singcallback');
      // const widgetId = await getWidgetId(response.data.id);
   
       setIsLoading(false);
@@ -101,7 +101,8 @@ export default function Home()  {
       responseType: 'arraybuffer',
     });
     const signedPdfDoc = await PDFDocument.load(signedPdfBytes.data);
-  
+    console.log(signedPdfBytes);
+  console.log(signedPdfDoc);
     // Obtener el XML
     const xmlResponse = await axios.get(`${url}/xml?download=true`, {
       auth: {
@@ -155,7 +156,7 @@ for (const page of originalPages) {
       widgetId: widgetId,
       pdf: pdfBase64,
       appendTo: 'signature-widget',
-      successBtnText: 'Proceed to next step',
+      successBtnText: 'Ve al siguiente paso ',
 
       onSuccess: {
         callToAction: function () {
@@ -182,18 +183,19 @@ for (const page of originalPages) {
       showSignatureWidget(widgetId, pdfBlob);
     }
   };return (
-    <div>
-      <h1>Generar pdf de ejemplo</h1>
-      <button onClick={handleCreatePdf}>Crear pdf y enviarlo</button>
-      {pdfBlob && (
-        <a href={URL.createObjectURL(pdfBlob)} download="example.pdf">
-          Download PDF
-        </a>
-      )}
-      <div id="signature-widget"></div>
-      {isLoading && <p>Loading...</p>}
-      {errorMessage && <p>Error: {errorMessage}</p>}
-      <Script src="https://app-sandbox.mifiel.com/sign-snippet-v1.0.0.min.js" />
-    </div>
+    <div className={styles.container}>
+    <h1 className={styles.title}>Generar pdf de ejemplo</h1>
+    <button className={styles.button} onClick={handleCreatePdf}>Crear pdf y enviarlo</button>
+    {pdfBlob && (
+      <a href={URL.createObjectURL(pdfBlob)} download="example.pdf" className="link">
+        Download PDF
+      </a>
+    )}
+    <div id="signature-widget" className={styles.signaturewidget}></div>
+    {isLoading && <p className={styles.loading}>Loading...</p>}
+   
+    <Script src="https://app-sandbox.mifiel.com/sign-snippet-v1.0.0.min.js" />
+  </div>
+  
   );
       }
